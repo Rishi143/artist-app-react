@@ -1,18 +1,37 @@
 import './App.css';
-import { Grid, Typography } from '@mui/material';
+import { Grid, ThemeProvider, Typography, createTheme } from '@mui/material';
 import DetailsContainer from './components/detailsContainer';
 import ArtistsContainer from './components/ArtistContainer';
+import NotificationAlert from './components/NotificationAlert';
+import { makeStyles } from '@mui/styles';
+
+const theme = createTheme();
+
+const useStyles = makeStyles((theme) => ({
+  container: {
+    padding: 16,
+    textAlign: 'center'
+  },
+  textCursive: {
+    fontFamily: 'cursive'
+  }
+}));
 
 function App() {
+
+  const classes = useStyles();
+
   return (
-    <Grid container spacing={2}>
-      <Grid xs={12} style={{ padding: 16, textAlign: 'center' }}>
-        <Typography variant="h3" component="h2" style={{ fontFamily: 'cursive' }}><b>Artist Management App</b></Typography>
+    <ThemeProvider theme={theme}>
+      <Grid container spacing={2}>
+        <NotificationAlert />
+        <Grid xs={12} style={{ padding: 16, textAlign: 'center' }}>
+          <Typography variant="h3" component="h2" style={{ fontFamily: 'cursive' }}><b>Artist Management App</b></Typography>
+        </Grid>
+        <ArtistsContainer />
+        <DetailsContainer />
       </Grid>
-      <ArtistsContainer />
-      {/* <Grid item xs={0.5}></Grid> */}
-      <DetailsContainer />
-    </Grid>
+    </ThemeProvider>
   );
 }
 

@@ -4,7 +4,12 @@ import { artists } from '../mocks';
 
 const intialState = {
     artistId: '',
-    artists
+    artists,
+    notificationData: {
+        show: false,
+        message: '',
+        type: ''
+    }
 }
 
 export const Context = createContext(intialState);
